@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>学生小时数查看</title>
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+
+  <h1>小时数查看</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>小时数</th>
+        <th>班级</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+  <script>
+
+    // 1. 读取本地存储的数据   student-data  本地存储的命名
+    const data = localStorage.getItem('student-data')
+
+    // 2. 如果有就返回对象，没有就声明一个空的数组  arr 一会渲染的时候用的
+    const arr = data ? JSON.parse(data) : []
+
+    // 获取 tbody
+    const tbody = document.querySelector('tbody')
+    // 3. 渲染模块函数
+    function render() {
+      // 遍历数组 arr，有几个对象就生成几个 tr，然后追击给tbody
+      // map 返回的是个数组  [tr, tr]
+      const trArr = arr.map(function (item, i) {
+        return `
+        <tr>
+          <td>${item.sno}</td>
+          <td>${item.uname}</td>
+          <td>${item.age}</td>
+          <td>${item.gender}</td>
+          <td>${item.salary}</td>
+          <td>${item.city}</td>
+        </tr> 
+        `
+      })
+      // 追加给tbody
+      // 因为 trArr 是个数组， 我们不要数组，我们要的是 tr的字符串 join()
+      tbody.innerHTML = trArr.join('')
+    }
+    render()
+
+  </script>
+</body>
+
+</html>

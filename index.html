@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>登录界面</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_2143783_iq6z4ey5vu.css">
+</head>
+
+<body>
+  <!-- 登录头部 -->
+  <div class="xtx-login-header">
+    <h1 class="logo"></h1>
+    <a class="home" href="https://www.jxvtc.edu.cn/">进入网站首页</a>
+  </div>
+  <!-- 登录内容 -->
+  <div class="xtx-login-main">
+    <div class="wrapper">
+      <form action="" autocomplete="off">
+        <div class="box">
+          <div class="tab-nav">
+            <a href="javascript:;" class="active" data-id="0">账户登录</a>
+          </div>
+          <div class="tab-pane">
+            <div class="link">
+              <a href="javascript:;">手机验证码登录</a>
+            </div>
+            <div class="input">
+              <span class="iconfont icon-zhanghao"></span>
+              <input required type="text" placeholder="请输入用户名称/手机号码" name="username">
+            </div>
+            <div class="input">
+              <span class="iconfont icon-suo"></span>
+              <input required type="password" placeholder="请输入密码" name="password">
+            </div>
+            <span style="color: red; font-size: small; display: none;" class="tip">请输入正确账号密码</span>
+            <div class="agree">
+              <label for="my-checkbox">
+                <input type="checkbox" value="1" id="my-checkbox" class="remember" name="agree">
+                <span class="iconfont icon-xuanze"></span>
+              </label>
+              我已同意 <a href="javascript:;">《服务条款》</a href="javascript:;"> 和 <a>《服务条款》</a>
+            </div>
+            <div class="button clearfix">
+              <button type="submit" class="dl">登 录</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+
+
+    // 点击提交模块
+    const form = document.querySelector('form')
+    const agree = document.querySelector('[name=agree]')
+    const username = document.querySelector('[name=username]')
+    form.addEventListener('submit', function (e) {
+      e.preventDefault()
+      // 判断是否勾选同意协议
+      if (!agree.checked) {
+        return alert('请勾选同意协议')
+      }
+
+      // 跳转
+      const tip = document.querySelector('.tip')
+      if (username.value === 'administer') {
+        // 记录用户名到本地存储
+        localStorage.setItem('xtx-uname', username.value)
+        location.href = './学生小时数管理.html'
+        tip.style.display = "none"
+      } else if (username.value === 'student') {
+
+        localStorage.setItem('xtx-uname', username.value)
+        location.href = './学生小时数查看.html'
+        tip.style.display = "none"
+      }else{
+        tip.style.display = "block"
+      }
+
+    })
+  </script>
+</body>
+
+</html>
